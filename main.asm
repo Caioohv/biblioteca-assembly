@@ -8,31 +8,24 @@
 
     qtd_livros: .word 0
     codigos:    .space 200    # 50 * 4 bytes
-    status:     .space 10    # 10 * 1 byte
+    status:     .space 50    # 50 * 1 byte
 
 
 .text
-    #########
-    # $t0 = opção escolhida pelo usuário
-    # $t1 = nome do livro
-    # $t2 = id do livro
-    # $t3 = status do livro
-    #########
-    
-    menu: 
+    menu:
         li $v0, 4
         la $a0, msginicial
         syscall
-    
+
         li $v0, 5
         syscall
         move $t0, $v0
-    
+
         beq $t0, 0, exit
         beq $t0, 1, cadastrar
-        beq $t0, 2, emprestar
-        beq $t0, 3, devolver
-        beq $t0, 4, listar
+        #beq $t0, 2, emprestar
+        #beq $t0, 3, devolver
+        #beq $t0, 4, listar
         j opcaoinvalida
 
     opcaoinvalida:
@@ -40,16 +33,12 @@
         la $a0, msgopcaoinvalida
         syscall
         j menu
-    
+
         exit:
         li $v0, 10
         syscall
 
     cadastrar:
-        #counter +1
-        lw $t2, qtd_livros
-        addi $t2, $t2, 1
-
         #print msg
         li $v0, 4
         la $a0, msgcadastrar
@@ -60,6 +49,21 @@
         la $a0, livro_buffer
         li $a1, 100
         syscall
+
+	#counter + 1
+        lw $t1, qtd_livros
+        addi $t2, $t1, 1
+        sw $t2, qtd_livros
+        
+        la $t3, codigos    # puxa o array
+        sll $t4, $t1, 2    # mult por 4 (int = 4)
+        add $t4, $t3, $t4   # t4 = &codigos[indice]
+        sw $t2, 0($t4)     # codigos[indice] = codigo
+        
+        la $t5, status
+        add $t5, $t5, $t1  # t5 = &status[indice]
+        li $t6, 1         # 1 = disponivel, 2 = alugado
+        sb $t6, 0($t5)     # status[indice] = livre
 
         #mostra o codigo do livro
         li $v0, 4
