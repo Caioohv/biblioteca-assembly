@@ -12,15 +12,15 @@
 
 
 .text
-    menu:
+    menu: 
         li $v0, 4
         la $a0, msginicial
         syscall
-
+    
         li $v0, 5
         syscall
         move $t0, $v0
-
+    
         beq $t0, 0, exit
         beq $t0, 1, cadastrar
         #beq $t0, 2, emprestar
@@ -33,7 +33,7 @@
         la $a0, msgopcaoinvalida
         syscall
         j menu
-
+    
         exit:
         li $v0, 10
         syscall
@@ -53,17 +53,17 @@
 	#counter + 1
         lw $t1, qtd_livros
         addi $t2, $t1, 1
-        sw $t2, qtd_livros
-        
-        la $t3, codigos    # puxa o array
-        sll $t4, $t1, 2    # mult por 4 (int = 4)
-        add $t4, $t3, $t4   # t4 = &codigos[indice]
-        sw $t2, 0($t4)     # codigos[indice] = codigo
-        
-        la $t5, status
-        add $t5, $t5, $t1  # t5 = &status[indice]
-        li $t6, 1         # 1 = disponivel, 2 = alugado
-        sb $t6, 0($t5)     # status[indice] = livre
+      	sw $t2, qtd_livros
+
+	la $t3, codigos    # puxa o array
+	sll $t4, $t1, 2    # mult por 4 (int = 4)
+	add $t4, $t3, $t4   # t4 = &codigos[indice]
+	sw $t2, 0($t4)     # codigos[indice] = codigo
+	
+	la $t5, status	   
+	add $t5, $t5, $t1  # t5 = &status[indice]
+	li $t6, 1          # 1 = disponivel, 2 = alugado
+	sb $t6, 0($t5)     # status[indice] = livre
 
         #mostra o codigo do livro
         li $v0, 4
