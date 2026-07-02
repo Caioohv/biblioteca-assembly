@@ -214,16 +214,246 @@ erro, garantindo a regra "não devolver livro que não está emprestado".
 
 ## 3. Testes
 
-Os testes foram executados no simulador MARS em linha de comando:
-
-```
-java -jar Mars4_5.jar nc main.asm
-```
+Os testes foram executados no simulador MARS:
 
 O cenário abaixo cadastra três livros, lista o acervo, empresta o livro 1 e 3,
 confirma a mudança de estado, devolve o livro 1 e exercita os dois casos
-de erro (devolver um livro disponível e emprestar um código inexistente). A saída
+de erro (devolver um livro disponível, devolver um livro inexistente, emprestar um livro emprestado e emprestar um código inexistente). A saída
 a seguir **não foi editada**.
+
+```sh
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 1
+Digite o titulo do livro: teste
+Codigo: 1  -  Livro cadastrado com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 1
+Digite o titulo do livro: testee
+Codigo: 2  -  Livro cadastrado com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 2
+Digite o codigo do livro: 1
+Livro emprestado com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 2
+Digite o codigo do livro: 3
+Codigo invalido!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 4
+Codigo: 1 | Emprestado
+Codigo: 2 | Disponivel
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 2
+Digite o codigo do livro: 5
+Codigo invalido!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 2
+Digite o codigo do livro: 1
+Livro ja esta emprestado!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 3
+Digite o codigo do livro: 1
+Livro devolvido com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 4
+Codigo: 1 | Disponivel
+Codigo: 2 | Disponivel
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 
+
+
+
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 1
+Digite o titulo do livro: teste
+Codigo: 1  -  Livro cadastrado com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 1
+Digite o titulo do livro: teste
+Codigo: 2  -  Livro cadastrado com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 1
+Digite o titulo do livro: teste
+Codigo: 3  -  Livro cadastrado com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 4
+Codigo: 1 | Disponivel
+Codigo: 2 | Disponivel
+Codigo: 3 | Disponivel
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 2
+Digite o codigo do livro: 1
+Livro emprestado com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 2
+Digite o codigo do livro: 3
+Livro emprestado com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 3
+Digite o codigo do livro: 1
+Livro devolvido com sucesso!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 4
+Codigo: 1 | Disponivel
+Codigo: 2 | Disponivel
+Codigo: 3 | Emprestado
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 2
+Digite o codigo do livro: 5
+Codigo invalido!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 2
+Digite o codigo do livro: 3
+Livro ja esta emprestado!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 3
+Digite o codigo do livro: 5
+Codigo invalido!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 3
+Digite o codigo do livro: 2
+Livro nao esta emprestado!
+Escolha entre:
+1. Cadastrar livro;
+2. Emprestar livro;
+3. Devolver livro;
+4. Listar livros;
+0. Sair;
+
+Sua opção: 
+```
 
 **Resumo dos casos verificados:**
 
@@ -239,7 +469,6 @@ a seguir **não foi editada**.
 | Emprestar código inexistente (9) | "Codigo invalido!" | OK |
 
 ---
-
 ## 4. Conclusão
 
 O trabalho cumpre todos os requisitos da especificação: cadastro, listagem,
