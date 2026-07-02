@@ -75,8 +75,8 @@
 
         la $t5, status
         add $t5, $t5, $t1  # t5 = &status[indice]
-        li $t6, 1          # 1 = disponivel, 2 = alugado
-        sb $t6, 0($t5)     # status[indice] = livre
+        li $t6, 1          # 1 = disponivel, 0 = emprestado
+        sb $t6, 0($t5)     # status[indice] = disponivel
 
         #mostra o codigo do livro
         li $v0, 4
@@ -199,8 +199,8 @@
         add $t3, $t3, $t2
         lb $t4, 0($t3)
 
-        #so devolve se estiver emprestado
-        bne $t4, 2, devolver_erro
+        #so devolve se estiver emprestado (status == 0)
+        bne $t4, 0, devolver_erro
         li $t5, 1
         sb $t5, 0($t3)     # status[indice] = disponivel
 
